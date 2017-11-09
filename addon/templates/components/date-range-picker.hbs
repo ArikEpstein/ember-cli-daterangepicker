@@ -1,8 +1,11 @@
 {{#if hasBlock}}
   {{yield}}
 {{else}}
-  {{#if label}}
-    <label>{{label}}</label>
-  {{/if}}
-  {{input value=rangeText class=inputClasses placeholder=placeholder}}
+  <span class='daterangepicker-input'>
+     <i class="fa fa-calendar fa-1"></i>
+    {{#if label}}
+      <label>{{label}}</label>
+    {{/if}}
+    {{rangeText}}<i class="fa fa-chevron-down fa-1"></i>
+  </span>
 {{/if}}
