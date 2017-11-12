@@ -4,6 +4,7 @@ import layout from '../templates/components/date-range-picker';
 
 const {
   run,
+  set,
   isEmpty,
   computed
 } = Ember;
@@ -12,6 +13,7 @@ const noop = function() {};
 
 export default Ember.Component.extend({
   layout,
+  isShown: false,
   classNameBindings: ['containerClass'],
   attributeBindings: ['start', 'end', 'serverFormat'],
   start: undefined,
@@ -180,15 +182,22 @@ export default Ember.Component.extend({
   },
 
   attachPickerEvents() {
+    this.$('.daterangepicker-input').on('show.daterangepicker', () => {
+      set(this, "isShown", true);
+    });
+
     this.$('.daterangepicker-input').on('apply.daterangepicker', (ev, picker) => {
+      set(this, "isShown", false);
       this.handleDateRangePickerEvent('applyAction', picker);
     });
 
     this.$('.daterangepicker-input').on('hide.daterangepicker', (ev, picker) => {
+      set(this, "isShown", false);
       this.handleDateRangePickerEvent('hideAction', picker);
     });
 
     this.$('.daterangepicker-input').on('cancel.daterangepicker', () => {
+      set(this, "isShown", false);
       this.handleDateRangePickerEvent('cancelAction', undefined, true);
     });
   },
