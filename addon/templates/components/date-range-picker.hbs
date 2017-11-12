@@ -6,6 +6,11 @@
     {{#if label}}
       <label>{{label}}</label>
     {{/if}}
-    {{rangeText}}<i class="fa fa-chevron-down fa-1"></i>
+    {{rangeText}}
+      {{#if isShown}}
+        <i class="fa fa-chevron-up fa-1"></i>
+      {{else}}
+        <i class="fa fa-chevron-down fa-1"></i>
+      {{/if}}
   </span>
 {{/if}}
