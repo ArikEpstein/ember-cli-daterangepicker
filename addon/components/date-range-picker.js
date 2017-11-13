@@ -184,6 +184,7 @@ export default Ember.Component.extend({
   attachPickerEvents() {
     this.$('.daterangepicker-input').on('show.daterangepicker', () => {
       set(this, "isShown", true);
+      this.sendAction('openAction');
     });
 
     this.$('.daterangepicker-input').on('apply.daterangepicker', (ev, picker) => {
