@@ -27,6 +27,7 @@ export default Ember.Component.extend({
   showWeekNumbers: false,
   showDropdowns: false,
   linkedCalendars: false,
+  endpointCalendars: true,
   datelimit: false,
   parentEl: 'body',
   format: 'MMM D, YYYY',
@@ -138,6 +139,7 @@ export default Ember.Component.extend({
       'showDropdowns',
       'showCustomRangeLabel',
       'linkedCalendars',
+      'endpointCalendars',
       'dateLimit',
       'parentEl'
     );
