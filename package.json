@@ -34,7 +34,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "bootstrap-daterangepicker": "github:ArikEpstein/bootstrap-daterangepicker#106e350f50186b8da5a970265116c96ad2424635",
+    "bootstrap-daterangepicker": "github:ArikEpstein/bootstrap-daterangepicker#053a0fccc80fcc9b5c21765a329db0bc03730321",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^5.2.4",
