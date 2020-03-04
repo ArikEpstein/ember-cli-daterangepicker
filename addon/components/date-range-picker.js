@@ -118,6 +118,7 @@ export default Component.extend({
     let showCustomRangeLabel = get(this, 'showCustomRangeLabel');
 
     let options = getProperties(
+      this,
       'isInvalidDate',
       'isCustomDate',
       'alwaysShowCalendars',
@@ -143,6 +144,7 @@ export default Component.extend({
     );
 
     let localeOptions = getProperties(
+      this,
       'applyLabel',
       'cancelLabel',
       'customRangeLabel',
