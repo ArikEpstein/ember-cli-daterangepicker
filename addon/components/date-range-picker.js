@@ -31,12 +31,12 @@ export default Component.extend({
   format: 'MMM D, YYYY',
   serverFormat: 'YYYY-MM-DD',
   rangeText: computed('start', 'end', function() {
-    let format = get('format');
-    let serverFormat = get('serverFormat');
-    let start = get('start');
-    let end = get('end');
+    let format = get(this, 'format');
+    let serverFormat = get(this, 'serverFormat');
+    let start = get(this, 'start');
+    let end = get(this, 'end');
     if (!isEmpty(start) && !isEmpty(end)) {
-      return moment(start, serverFormat).format(format) + get('separator') +
+      return moment(start, serverFormat).format(format) + get(this, 'separator') +
         moment(end, serverFormat).format(format);
     }
     return '';
@@ -49,7 +49,7 @@ export default Component.extend({
   containerClass: "form-group",
   inputClass: "form-control",
   inputClasses: computed('inputClass', function() {
-    let inputClass = get('inputClass');
+    let inputClass = get(this, 'inputClass');
     return (inputClass ? 'daterangepicker-input ' + inputClass : 'daterangepicker-input');
   }),
   buttonClasses: ['btn'],
@@ -99,23 +99,23 @@ export default Component.extend({
 
     run.cancel(this._setupTimer);
 
-    if (get('removeDropdownOnDestroy')) {
+    if (get(this, 'removeDropdownOnDestroy')) {
       $('.daterangepicker').remove();
     }
   },
 
   getOptions() {
-    let momentStartDate = moment(get('start'), get('serverFormat'));
-    let momentEndDate = moment(get('end'), get('serverFormat'));
+    let momentStartDate = moment(get(this, 'start'), get(this, 'serverFormat'));
+    let momentEndDate = moment(get(this, 'end'), get(this, 'serverFormat'));
     let startDate = momentStartDate.isValid() ? momentStartDate : undefined;
     let endDate = momentEndDate.isValid() ? momentEndDate : undefined;
 
-    let momentMinDate = moment(get('minDate'), get('serverFormat'));
-    let momentMaxDate = moment(get('maxDate'), get('serverFormat'));
+    let momentMinDate = moment(get(this, 'minDate'), get(this, 'serverFormat'));
+    let momentMaxDate = moment(get(this, 'maxDate'), get(this, 'serverFormat'));
     let minDate = momentMinDate.isValid() ? momentMinDate : undefined;
     let maxDate = momentMaxDate.isValid() ? momentMaxDate : undefined;
 
-    let showCustomRangeLabel = get('showCustomRangeLabel');
+    let showCustomRangeLabel = get(this, 'showCustomRangeLabel');
 
     let options = getProperties(
       'isInvalidDate',
@@ -164,8 +164,8 @@ export default Component.extend({
       maxDate: maxDate,
     };
 
-    if (!get('singleDatePicker')) {
-      options.ranges = get('ranges');
+    if (!get(this, 'singleDatePicker')) {
+      options.ranges = get(this, 'ranges');
     }
 
     return { ...options, ...defaultOptions };
@@ -204,13 +204,13 @@ export default Component.extend({
   },
 
   handleDateRangePickerEvent(actionName, picker, isCancel = false) {
-    let action = this.get(actionName);
+    let action = get(this, actionName);
     let start;
     let end;
 
     if (!isCancel) {
-      start = picker.startDate.format(get('serverFormat'));
-      end = picker.endDate.format(get('serverFormat'));
+      start = picker.startDate.format(get(this, 'serverFormat'));
+      end = picker.endDate.format(get(this, 'serverFormat'));
     }
 
     if (action) {
@@ -221,7 +221,7 @@ export default Component.extend({
       this.sendAction(actionName, start, end, picker);
     } else {
       if (!this.isDestroyed) {
-        setProperties({ start, end });
+        setProperties(this, { start, end });
       }
     }
   }
